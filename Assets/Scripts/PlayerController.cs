@@ -10,12 +10,18 @@ public class PlayerController : MonoBehaviour {
     private Vector2 velocity;
     private Camera cam;
     private Transform form;
-    public CasterController cast;
+    //public CasterController cast;
+    public GameObject Caster1;
+    public GameObject Caster2;
     void Start ()
     {
         body = GetComponent<Rigidbody2D>();
         cam = FindObjectOfType<Camera>();
         form = GetComponent<Transform>();
+        //cast = GetComponent<CasterController>();
+        Caster1 = transform.Find("Caster").gameObject;
+        Caster2 = transform.Find("Caster2").gameObject;
+
 	}
 
 	void Update ()
@@ -37,9 +43,14 @@ public class PlayerController : MonoBehaviour {
         body.rotation = angle;
 
         if (Input.GetMouseButtonDown(0))
-            cast.isFiring = true;
+            Caster1.GetComponent<CasterController>().isFiring = true;
         if (Input.GetMouseButtonUp(0))
-            cast.isFiring = false;
+            Caster1.GetComponent<CasterController>().isFiring = false;
+        if (Input.GetMouseButtonDown(1))
+            Caster2.GetComponent<CasterController>().isFiring = true;
+        if (Input.GetMouseButtonUp(1))
+            Caster2.GetComponent<CasterController>().isFiring = false;
+
 
     }
 

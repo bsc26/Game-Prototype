@@ -6,9 +6,11 @@ public class EnemyHealthManager : MonoBehaviour {
 
     public int health;
     private int currentHealth;
+    private PlayerFatigueManager fatigue;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        fatigue = FindObjectOfType<PlayerFatigueManager>();
         currentHealth = health;
 	}
 	
@@ -22,6 +24,8 @@ public class EnemyHealthManager : MonoBehaviour {
 
     public void HurtEnemy (int damage)
     {
-        currentHealth -= damage;
+        int newDamage = damage - damage * ((int)fatigue.fatigue / 100);
+        if (newDamage > 0)
+            currentHealth -= newDamage; 
     }
 }

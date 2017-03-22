@@ -7,6 +7,9 @@ public class SpellController : MonoBehaviour {
     public float speed;
     public int damageToGive;
     public Collider2D coll;
+    public float magicUsage;
+    public float magicUsageDrainMultiplier;
+    public bool penetrate;
 	void Start () {
         coll = GetComponent<Collider2D>();
         //coll.isTrigger = true;
@@ -23,7 +26,8 @@ public class SpellController : MonoBehaviour {
         if(other.gameObject.tag == "Enemy")
         {
             other.gameObject.GetComponent<EnemyHealthManager>().HurtEnemy(damageToGive);
-            Destroy(gameObject);
+            if(!penetrate)
+                Destroy(gameObject);
         }
     }
 }
