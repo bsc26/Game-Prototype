@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerFatigueManager : MonoBehaviour {
 
-    public float fatigue;
+    public double fatigue;
     public Text FatigueText;
 	// Use this for initialization
 	void Start () {
@@ -21,7 +21,7 @@ public class PlayerFatigueManager : MonoBehaviour {
         FatigueText.text = "Fatigue" + fatigue.ToString("F0");
     }
 
-    public void FatigueGain(float amount)
+    public void FatigueGain(double amount)
     {
         fatigue += amount;
     }
